@@ -149,7 +149,8 @@ install_tool "postgresql" "postgresql" "postgresql"
 
 # Development Tools
 install_tool "git" "git" "git"
-install_tool "docker" "docker" "docker-desktop"
+install_cask_app "docker" "docker" "docker-desktop"
+install_tool "docker-compose" "docker-compose" "docker-compose"
 install_cask_app "visual-studio-code" "Visual Studio Code"
 install_cask_app "github-desktop" "GitHub Desktop"
 
@@ -160,6 +161,7 @@ add_to_path "code" "/Applications/Visual Studio Code.app/Contents/Resources/app/
 vscode_extensions=(
     "smcpeak.default-keys-windows"
     "ms-azuretools.vscode-docker"
+    "msjsdiag.vscode-react-native"
     # Add other extensions here as needed
 )
 

@@ -54,6 +54,7 @@ Download or clone the repository and navigate to the script directory.
 ### Development Tools
 - **Git**
 - **Docker**
+- **Docker Compose**
 - **Visual Studio Code**
 - **GitHub Desktop**
 
@@ -61,6 +62,7 @@ Download or clone the repository and navigate to the script directory.
 The script installs or updates the following VS Code extensions:
 - `smcpeak.default-keys-windows`
 - `ms-azuretools.vscode-docker`
+- `msjsdiag.vscode-react-native`
 
 To add more extensions, update the `vscode_extensions` array in the script.
 
