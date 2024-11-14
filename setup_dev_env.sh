@@ -50,15 +50,16 @@ install_tool() {
         if [[ "$OSTYPE" == "darwin"* ]]; then
             # Determine if it's a formula or cask and update accordingly
             if brew list --formula | grep -q "^$2$"; then
-                echo "Updating $2 as a formula..."
+                echo "Updating $1 as a formula..."
                 brew upgrade "$2"
             elif brew list --cask | grep -q "^$2$"; then
-                echo "Updating $2 as a cask..."
+                echo "Updating $1 as a cask..."
                 brew upgrade --cask "$2"
             else
-                echo "$2 is installed, but it could not be identified as a formula or cask."
+                echo "$1 is installed, but it could not be identified as a formula or cask."
             fi
         elif [[ "$OSTYPE" == "msys"* ]]; then
+            echo "Updagrding $1..."
             choco upgrade "$3" -y
         fi
     fi
@@ -68,51 +69,23 @@ install_cask_app() {
     if [[ "$OSTYPE" == "darwin"* ]]; then
         # Check if the cask app is installed in Applications folder
         if [[ ! -d "/Applications/$2.app" ]]; then
-            echo "Installing $2..."
-            brew install --cask "$1"
+            echo "Installing $1..."
+            brew install --cask "$2"
         else
-            echo "$2 is already installed. Updating $2..."
-            brew upgrade --cask "$1"
+            echo "$1 is already installed. Updating $1..."
+            brew upgrade --cask "$2"
         fi
     elif [[ "$OSTYPE" == "msys"* ]]; then
         # Windows: Use Chocolatey to install or update
-        if ! choco list --local-only | grep -q "^$1 "; then
-            echo "Installing $2..."
-            choco install "$1" -y
+        if ! choco list --local-only | grep -q "^$3 "; then
+            echo "Installing $1..."
+            choco install "$3" -y
         else
-            echo "$2 is already installed. Updating $2..."
-            choco upgrade "$1" -y
+            echo "$1 is already installed. Updating $1..."
+            choco upgrade "$3" -y
         fi
     fi
 }
-
-
-install_cask_app() {
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        # macOS: Check if the cask app exists in the Applications folder
-        if [[ ! -d "/Applications/$2.app" ]]; then
-            echo "Installing $2..."
-            brew install --cask "$1"
-        else
-            echo "$2 is already installed in Applications. Skipping installation."
-            # Optional: Uncomment the following line to force an update if desired
-            # brew upgrade --cask "$1"
-        fi
-    elif [[ "$OSTYPE" == "msys"* ]]; then
-        # Windows: Use Chocolatey to install or update
-        if ! choco list --local-only | grep -q "^$1 "; then
-            echo "Installing $2..."
-            choco install "$1" -y
-        else
-            echo "$2 is already installed. Updating $2..."
-            choco upgrade "$1" -y
-        fi
-    fi
-}
-
-
-
-
 
 # Function to add a command to PATH if not already present
 add_to_path() {
@@ -140,19 +113,20 @@ add_to_path() {
 
 
 # Install Languages and Frameworks
-install_tool "dotnet" "dotnet-sdk" "dotnet-sdk"
-install_tool "node" "node" "nodejs"
-install_tool "typescript" "typescript" "typescript"
+install_tool "Dotnet SDK" "dotnet-sdk" "dotnet-sdk"
+install_tool "Node.js" "node" "nodejs"
+install_tool "TypeScript" "typescript" "typescript"
 
 # Database Installation
-install_tool "postgresql" "postgresql" "postgresql"
+install_tool "PostgreSQL" "postgresql" "postgresql"
 
 # Development Tools
-install_tool "git" "git" "git"
-install_cask_app "docker" "docker" "docker-desktop"
-install_tool "docker-compose" "docker-compose" "docker-compose"
-install_cask_app "visual-studio-code" "Visual Studio Code"
-install_cask_app "github-desktop" "GitHub Desktop"
+install_tool "Git" "git" "git"
+install_tool "Docker" "docker" "docker"
+install_tool "Docker Compose" "docker-compose" "docker-compose"
+install_tool "Visual Studio Code" "visual-studio-code" "vscode"
+install_tool "GitHub Desktop" "github" "github-desktop"
+install_tool "Docker Desktop" "docker" "docker-desktop"
 
 # Ensure the commands are available by adding it to PATH if missing
 add_to_path "code" "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
@@ -162,6 +136,12 @@ vscode_extensions=(
     "smcpeak.default-keys-windows"
     "ms-azuretools.vscode-docker"
     "msjsdiag.vscode-react-native"
+    "dart-code.dart-code"
+    "ms-vscode-remote.remote-containers"
+    "dart-code.flutter"
+    "ms-vscode.powershell"
+    "planbcoding.vscode-react-refactor"
+    "ms-dotnettools.csdevkit"
     # Add other extensions here as needed
 )
 

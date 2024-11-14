@@ -21,6 +21,7 @@ Download or clone the repository and navigate to the script directory.
 ### 2. Run the Script
 
 #### On macOS:
+
 1. Open Terminal.
 2. Navigate to the script's directory.
 3. Make the script executable:
@@ -33,6 +34,7 @@ Download or clone the repository and navigate to the script directory.
    ```
 
 #### On Windows:
+
 1. Install Git Bash or WSL (Windows Subsystem for Linux) if not already installed.
 2. Open Git Bash or a WSL terminal.
 3. Navigate to the script's directory.
@@ -44,25 +46,37 @@ Download or clone the repository and navigate to the script directory.
 ## Components Installed by the Script
 
 ### Languages and Frameworks
+
 - **.NET SDK** (`dotnet-sdk`)
 - **Node.js**
 - **TypeScript**
 
 ### Database
+
 - **PostgreSQL**
 
 ### Development Tools
+
 - **Git**
 - **Docker**
 - **Docker Compose**
 - **Visual Studio Code**
 - **GitHub Desktop**
+- **Docker Desktop**
 
 ### VS Code Extensions
+
 The script installs or updates the following VS Code extensions:
+
 - `smcpeak.default-keys-windows`
 - `ms-azuretools.vscode-docker`
 - `msjsdiag.vscode-react-native`
+- `dart-code.dart-code`
+- `ms-vscode-remote.remote-containers`
+- `dart-code.flutter`
+- `ms-vscode.powershell`
+- `planbcoding.vscode-react-refactor`
+- `ms-dotnettools.csdevkit`
 
 To add more extensions, update the `vscode_extensions` array in the script.
 
